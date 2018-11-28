@@ -1,0 +1,22 @@
+{
+  "name": "gulp-tutorial",
+  "version": "1.0.0",
+  "description": "NPM package for gulp.js tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdcodes/gulp-dev.git"
+  },
+  "author": "Peter Dudka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pdcodes/gulp-dev/issues"
+  },
+  "homepage": "https://github.com/pdcodes/gulp-dev#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}
