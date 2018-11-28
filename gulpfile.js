@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var livereload = require('gulp-livereload');
+var concat = require('gulp-concat');
 
 // File Paths
 var SCRIPTS_PATH = 'public/scripts/**/*.js';
