@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 
 // File Paths
-var SCRIPTS_PATH = 'site-files/public/scripts/**/*.js';
+var SCRIPTS_PATH = 'public/scripts/**/*.js';
 
 // Styles
 gulp.task('styles', function() {
