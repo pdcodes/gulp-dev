@@ -4,6 +4,7 @@ var livereload = require('gulp-livereload');
 var concat = require('gulp-concat');
 
 // File Paths
+var DIST_PATH = 'public/dist';
 var SCRIPTS_PATH = 'public/scripts/**/*.js';
 var STYLES_PATH = 'public/css/**/*.css';
 
@@ -11,9 +12,11 @@ var STYLES_PATH = 'public/css/**/*.css';
 gulp.task('styles', function() {
 	console.log('Starting styles task');
 
-	return gulp.src(STYLES_PATH)
+	// Load files as array instead of string, specifying the order 
+	// by referencing files that should be loaded first separately
+	return gulp.src(['public/css/reset.css', STYLES_PATH])
 		.pipe(concat('styles.css'))
-		.pipe(gulp.dest('public/dist'))
+		.pipe(gulp.dest(DIST_PATH))
 		.pipe(livereload());
 });
 
@@ -23,7 +26,7 @@ gulp.task('scripts', function () {
 
 	return gulp.src(SCRIPTS_PATH)
 		.pipe(uglify())
-		.pipe(gulp.dest('public/dist'))
+		.pipe(gulp.dest(DIST_PATH))
 		.pipe(livereload());
 
 	console.log('Scripts task complete');
