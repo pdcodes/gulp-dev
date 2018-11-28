@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var livereload = require('gulp-livereload');
 var concat = require('gulp-concat');
+var cleanCSS = require('gulp-clean-css');
 
 // File Paths
 var DIST_PATH = 'public/dist';
@@ -16,6 +17,7 @@ gulp.task('styles', function() {
 	// by referencing files that should be loaded first separately
 	return gulp.src(['public/css/reset.css', STYLES_PATH])
 		.pipe(concat('styles.css'))
+		.pipe(cleanCSS())
 		.pipe(gulp.dest(DIST_PATH))
 		.pipe(livereload());
 });
@@ -43,6 +45,7 @@ gulp.task('watch', function() {
 	require('./server.js');
 	livereload.listen();
 	gulp.watch(SCRIPTS_PATH, ['scripts']);
+	gulp.watch(STYLES_PATH, ['styles']);
 });
 
 // Default
