@@ -5,10 +5,16 @@ var concat = require('gulp-concat');
 
 // File Paths
 var SCRIPTS_PATH = 'public/scripts/**/*.js';
+var STYLES_PATH = 'public/css/**/*.css';
 
 // Styles
 gulp.task('styles', function() {
 	console.log('Starting styles task');
+
+	return gulp.src(STYLES_PATH)
+		.pipe(concat('styles.css'))
+		.pipe(gulp.dest('public/dist'))
+		.pipe(livereload());
 });
 
 // Scripts
