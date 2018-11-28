@@ -7,12 +7,14 @@ gulp.task('styles', function() {
 });
 
 // Scripts
-gulp.task('scripts', function() {
-	console.log('Starting scripts task');
+gulp.task('scripts', function () {
+	console.log('starting scripts task');
 
-	return gulp.src('public/scripts/*.js')
+	return gulp.src('site-files/public/scripts/*.js')
 		.pipe(uglify())
-		.pipe(gulp.dest('public/dist'))
+		.pipe(gulp.dest('site-files/public/dist'));
+
+	console.log('scripts task complete');
 });
 
 // Images
