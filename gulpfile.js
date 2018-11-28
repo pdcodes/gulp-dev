@@ -12,7 +12,7 @@ gulp.task('scripts', function() {
 
 // Images
 gulp.task('images', function() {
-	console.log('Starting images task'):
+	console.log('Starting images task');
 });
 
 // Default
