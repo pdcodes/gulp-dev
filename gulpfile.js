@@ -1,6 +1,9 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 
+// File Paths
+var SCRIPTS_PATH = 'site-files/public/scripts/**/*.js';
+
 // Styles
 gulp.task('styles', function() {
 	console.log('Starting styles task');
@@ -8,18 +11,25 @@ gulp.task('styles', function() {
 
 // Scripts
 gulp.task('scripts', function () {
-	console.log('starting scripts task');
+	console.log('Starting scripts task');
 
-	return gulp.src('site-files/public/scripts/*.js')
+	return gulp.src(SCRIPTS_PATH)
 		.pipe(uglify())
 		.pipe(gulp.dest('site-files/public/dist'));
 
-	console.log('scripts task complete');
+	console.log('Scripts task complete');
 });
 
 // Images
 gulp.task('images', function() {
 	console.log('Starting images task');
+});
+
+// Watch
+gulp.task('watch', function() {
+	console.log('Watching files for changes');
+	require('./server.js');
+	gulp.watch(SCRIPTS_PATH, ['scripts']);
 });
 
 // Default
