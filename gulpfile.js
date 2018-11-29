@@ -9,6 +9,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var babel = require('gulp-babel');
 var del = require('del');
+var zip = require('gulp-zip');
 
 // Handlebars plugins
 var handlebars = require('gulp-handlebars');
@@ -159,6 +160,13 @@ gulp.task('watch-scss', ['scss'], function() {
 gulp.task('clean', function() {
 	return del.sync([
 		DIST_PATH]);
+});
+
+// Export
+gulp.task('export', function() {
+	return gulp.src('public/**/*')
+		.pipe(zip('website.zip'))
+		.pipe(gulp.dest('./'))
 });
 
 // Default
