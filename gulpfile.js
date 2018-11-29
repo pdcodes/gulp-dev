@@ -119,16 +119,17 @@ gulp.task('templates', function() {
 })
 
 // Watch
-gulp.task('watch', function() {
+gulp.task('watch', ['styles'], function() {
 	console.log('Watching files for changes');
 	require('./server.js');
 	livereload.listen();
 	gulp.watch(SCRIPTS_PATH, ['scripts']);
 	gulp.watch(STYLES_PATH, ['styles']);
+	gulp.watch(TEMPLATES_PATH, ['templates']);
 });
 
 // Watch for SCSS
-gulp.task('watch-scss', function() {
+gulp.task('watch-scss', ['scss'], function() {
 	console.log('Watching files for changes');
 	require('./server.js');
 	livereload.listen();
@@ -138,6 +139,6 @@ gulp.task('watch-scss', function() {
 });
 
 // Default
-gulp.task('default', function() {
+gulp.task('default', ['images', 'templates', 'styles', 'scripts'], function() {
 	console.log('Running default task');
 });

@@ -5,13 +5,16 @@ class Person {
 
 	hello() {
 		if (typeof this.name === 'string') {
-			return '<p>Hello, I am ' + this.name + '!</p>';
+			return 'Hello, I am ' + this.name + '!';
 		} else {
 			return 'Hello!';
 		}
 	}
 }
 
-var person = new Person("Peter");
+var person = new Person("Andrew");
+var greetingHTML = templates['greeting']({
+	message: person.hello()
+});
 
-document.write(person.hello());
+document.write(greetingHTML);
