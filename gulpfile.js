@@ -7,6 +7,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
+var babel = require('gulp-babel');
 
 // File Paths
 var DIST_PATH = 'public/dist';
@@ -71,7 +72,17 @@ gulp.task('scripts', function () {
 	console.log('Starting scripts task');
 
 	return gulp.src(SCRIPTS_PATH)
+		.pipe(plumber( function(err) {
+			console.log('Scripts task error:' + err);
+			this.emit('end');
+		}))
+		.pipe(sourcemaps.init())
+		.pipe(babel({
+			presets: ['@babel/env']
+		}))
 		.pipe(uglify())
+		.pipe(concat('scripts.js'))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(DIST_PATH))
 		.pipe(livereload());
 
