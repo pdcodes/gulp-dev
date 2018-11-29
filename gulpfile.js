@@ -4,6 +4,8 @@ var livereload = require('gulp-livereload');
 var concat = require('gulp-concat');
 var cleanCSS = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
+var plumber = require('gulp-plumber');
+var sourcemaps = require('gulp-sourcemaps');
 
 // File Paths
 var DIST_PATH = 'public/dist';
@@ -17,6 +19,12 @@ gulp.task('styles', function() {
 	// Load files as array instead of string, specifying the order 
 	// by referencing files that should be loaded first separately
 	return gulp.src(['public/css/reset.css', STYLES_PATH])
+		.pipe(plumber( function(err) {
+			console.log('Styles task error: ' + err);
+			this.emit('end');
+		}))
+		// initialize sourcemaps as one of the first tasks
+		.pipe(sourcemaps.init())
 		// autoprefixer v6.0.0 requires options object
 		.pipe(autoprefixer({
             browsers: ['last 2 versions'],
@@ -24,6 +32,8 @@ gulp.task('styles', function() {
         }))
 		.pipe(concat('styles.css'))
 		.pipe(cleanCSS())
+		// write sourcemaps just before you write to dest
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(DIST_PATH))
 		.pipe(livereload());
 });
