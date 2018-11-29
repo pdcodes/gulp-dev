@@ -36,9 +36,12 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.1",
     "gulp-wrap": "^0.14.0",
+    "gulp-zip": "^4.2.0",
     "handlebars": "^4.0.12",
     "imagemin-jpeg-recompress": "^5.1.0",
-    "imagemin-pngquant": "^6.0.0"
+    "imagemin-pngquant": "^6.0.0",
+    "minimatch": ">=3.0.2",
+    "lodash": ">=4.17.5"
   },
   "dependencies": {
     "gulp-plumber": "^1.2.1",
