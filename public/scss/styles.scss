@@ -1,10 +1,14 @@
+@import "./reset/basic-reset";
+
+$black: #000;
+
 body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	height: 100vh;
-	background-color: white;
+	background-color: $black;
 }
 
 img {
