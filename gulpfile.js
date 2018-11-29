@@ -9,10 +9,17 @@ var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var babel = require('gulp-babel');
 
+// Handlebars plugins
+var handlebars = require('gulp-handlebars');
+var handlebarsLib = require('handlebars');
+var declare = require('gulp-declare');
+var wrap = require('gulp-wrap');
+
 // File Paths
 var DIST_PATH = 'public/dist';
 var SCRIPTS_PATH = 'public/scripts/**/*.js';
 var STYLES_PATH = 'public/css/**/*.css';
+var TEMPLATES_PATH = 'templates/**/*.hbs';
 
 // Styles
 gulp.task('styles', function() {
@@ -94,6 +101,23 @@ gulp.task('images', function() {
 	console.log('Starting images task');
 });
 
+// Templates
+gulp.task('templates', function() {
+	console.log('Starting templates task');
+	return gulp.src(TEMPLATES_PATH)
+		.pipe(handlebars({
+			handlebars: handlebarsLib
+		}))
+		.pipe(wrap('Handlebars.template(<%= contents %>)'))
+		.pipe(declare({
+			namespace: 'templates',
+			noRedeclare: true
+		}))
+		.pipe(concat('templates.js'))
+		.pipe(gulp.dest(DIST_PATH))
+		.pipe(livereload());
+})
+
 // Watch
 gulp.task('watch', function() {
 	console.log('Watching files for changes');
@@ -110,6 +134,7 @@ gulp.task('watch-scss', function() {
 	livereload.listen();
 	gulp.watch(SCRIPTS_PATH, ['scripts']);
 	gulp.watch('public/scss/**/*.scss', ['scss']);
+	gulp.watch(TEMPLATES_PATH, ['templates']);
 });
 
 // Default
